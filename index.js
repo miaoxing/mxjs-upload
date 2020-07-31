@@ -1,7 +1,7 @@
 import React from 'react';
 import {Upload, Modal} from 'antd';
 import {PlusOutlined} from '@ant-design/icons';
-import app from '@weijs/app';
+import app from '@mxjs/app';
 
 function getBase64(file) {
   return new Promise((resolve, reject) => {
