@@ -60,7 +60,7 @@ export default class PicturesWall extends React.Component {
           uid: fileList,
           url: fileList,
         }
-      ]
+      ];
     }
 
     return fileList;
@@ -143,4 +143,4 @@ export const convertToFirstFile = (values, name) => {
 
   values[name] = value;
   return values;
-}
+};
