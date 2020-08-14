@@ -59,7 +59,7 @@ export default class PicturesWall extends React.Component {
         {
           uid: fileList,
           url: fileList,
-        }
+        },
       ];
     }
 
@@ -81,7 +81,7 @@ export default class PicturesWall extends React.Component {
       } else {
         file.status = 'error';
         file.error = {
-          statusText: file.response.message
+          statusText: file.response.message,
         };
       }
     });
@@ -106,7 +106,7 @@ export default class PicturesWall extends React.Component {
             previewFile: '预览文件',
             removeFile: '移除文件',
             downloadFile: '下载文件',
-            uploading: '上传中...'
+            uploading: '上传中...',
           }}
           {...rest}
         >
