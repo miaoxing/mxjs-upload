@@ -1,7 +1,7 @@
+import $ from 'miaoxing';
 import React from 'react';
 import {Upload, Modal} from 'antd';
 import {PlusOutlined} from '@ant-design/icons';
-import app from '@mxjs/app';
 
 function getBase64(file) {
   return new Promise((resolve, reject) => {
@@ -14,7 +14,7 @@ function getBase64(file) {
 
 export default class PicturesWall extends React.Component {
   static defaultProps = {
-    url: app.url('admin-api/admins/upload'),
+    url: $.url('admin-api/admins/upload'),
 
     /**
      * 最多添加几张图片,0表示不限制
