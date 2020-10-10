@@ -1,7 +1,7 @@
-import $ from 'miaoxing';
 import React from 'react';
 import {Upload, Modal} from 'antd';
 import {PlusOutlined} from '@ant-design/icons';
+import {FormContext} from '@mxjs/a-form';
 
 function getBase64(file) {
   return new Promise((resolve, reject) => {
@@ -13,19 +13,96 @@ function getBase64(file) {
 }
 
 export default class PicturesWall extends React.Component {
+  static contextType = FormContext;
+
   static defaultProps = {
-    url: $.url('admin-api/admins/upload'),
+    /**
+     * 提交到后台的地址
+     */
+    url: null,
 
     /**
      * 最多添加几张图片,0表示不限制
      */
     max: 0,
+
+    /**
+     * 提交到后台的数据格式
+     */
+    dataType: null,
   }
 
   state = {
     previewVisible: false,
     previewImage: '',
     previewTitle: '',
+  };
+
+  constructor(props, context) {
+    super(props, context);
+
+    context.setInputConverter(this.inputConverter);
+    context.setOutputConverter(this.outputConverter);
+  }
+
+  inputConverter = (values) => {
+    // 统一为 {fileList: []} 格式
+    values[this.props.id] = {fileList: this.convertInputFile(values[this.props.id])};
+    return values;
+  };
+
+  convertInputFile = (value) => {
+    // Case: 无值，例如刚初始化
+    if (!value) {
+      return [];
+    }
+
+    // Case: 字符串，例如单个图片
+    if (typeof value === 'string') {
+      return [{url: value}];
+    }
+
+    // Case: 图片数组，例如多个图片 ['url.jpg', 'url2.jpg']
+    if (Array.isArray(value) && typeof value[0] === 'string') {
+      return value.map(file => ({url: file}));
+    }
+
+    // Case 图片数组对象 [{url: '1.jpg'},{url: '2.jpg'}]
+    if (Array.isArray(value)) {
+      return value;
+    }
+
+    throw new Error('Unsupported upload value: ' + JSON.stringify(value))
+  }
+
+  outputConverter = (values) => {
+    const name = this.props.id;
+
+    let value = values[name] || [];
+
+    // TODO 可以去掉 ？
+    if (typeof value.fileList !== 'undefined') {
+      value = value.fileList;
+    }
+
+    const dataType = this.props.dataType || (!this.isMultiple() ? 'string' : 'object');
+    switch (dataType) {
+      case 'string':
+        values[name] = value.length ? value[0].url : '';
+        break;
+
+      case 'array':
+        values[name] = value.map(file => file.url);
+        break;
+
+      case 'object':
+        values[name] = value.map(file => {
+          // 其他的附加数据呢？
+          return {url: file.url};
+        });
+    }
+
+    return values;
   };
 
   handleCancel = () => this.setState({previewVisible: false});
@@ -42,34 +119,14 @@ export default class PicturesWall extends React.Component {
     });
   };
 
-  prepareFileList(fileList) {
-    // Case: 表单初始化，无值
-    if (!fileList || fileList === '') {
-      return [];
-    }
-
-    // Case: 在页面上传或删除文件
-    if (typeof fileList.fileList !== 'undefined') {
-      return fileList.fileList;
-    }
-
-    // Case: 后台返回的字符串地址
-    if (typeof fileList === 'string') {
-      return [
-        {
-          uid: fileList,
-          url: fileList,
-        },
-      ];
-    }
-
-    return fileList;
-  }
-
   processFileList(fileList) {
-    fileList = this.prepareFileList(fileList);
+    fileList = fileList ? fileList.fileList : [];
 
     fileList.map(file => {
+      if (!file.uid) {
+        file.uid = file.url;
+      }
+
       // 后台返回了，则更新后台的信息
       if (!file.response) {
         return;
@@ -89,6 +146,10 @@ export default class PicturesWall extends React.Component {
     return fileList;
   }
 
+  isMultiple() {
+    return this.props.max !== 1;
+  }
+
   render() {
     const {url, max, fileList, ...rest} = this.props;
     const files = this.processFileList(fileList);
@@ -101,7 +162,7 @@ export default class PicturesWall extends React.Component {
           listType="picture-card"
           fileList={files}
           onPreview={this.handlePreview}
-          multiple={max > 1}
+          multiple={this.isMultiple()}
           locale={{
             previewFile: '预览文件',
             removeFile: '移除文件',
@@ -110,7 +171,7 @@ export default class PicturesWall extends React.Component {
           }}
           {...rest}
         >
-          {files.length >= max ? null : <div>
+          {(max && files.length >= max) ? null : <div>
             <PlusOutlined/>
           </div>}
         </Upload>
@@ -126,21 +187,3 @@ export default class PicturesWall extends React.Component {
     );
   }
 }
-
-export const convertToFirstFile = (values, name) => {
-  // Case: 后台返回字符串直接提交
-  let value = values[name];
-
-  // Case：后台返回字符串，删除后上传新的图片
-  if (typeof value.fileList !== 'undefined') {
-    value = value.fileList;
-  }
-
-  // Case: 后台无返回，上传新的图片
-  if (Array.isArray(value)) {
-    value = value.length ? value[0].url : '';
-  }
-
-  values[name] = value;
-  return values;
-};
