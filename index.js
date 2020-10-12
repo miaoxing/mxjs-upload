@@ -2,6 +2,7 @@ import React from 'react';
 import {Upload, Modal} from 'antd';
 import {PlusOutlined} from '@ant-design/icons';
 import {FormContext} from '@mxjs/a-form';
+import {setValue, getValue} from 'rc-field-form/lib/utils/valueUtil';
 
 function getBase64(file) {
   return new Promise((resolve, reject) => {
@@ -30,6 +31,11 @@ export default class PicturesWall extends React.Component {
      * 提交到后台的数据格式
      */
     dataType: null,
+
+    /**
+     * 如果 Form.Item 是多级或 id 和 name 不相同时，需要自行指定 name
+     */
+    name: null,
   }
 
   state = {
@@ -47,8 +53,7 @@ export default class PicturesWall extends React.Component {
 
   inputConverter = (values) => {
     // 统一为 {fileList: []} 格式
-    values[this.props.id] = {fileList: this.convertInputFile(values[this.props.id])};
-    return values;
+    return setValue(values, this.props.id, {fileList: this.convertInputFile(values[this.props.id])})
   };
 
   convertInputFile = (value) => {
@@ -76,9 +81,9 @@ export default class PicturesWall extends React.Component {
   }
 
   outputConverter = (values) => {
-    const name = this.props.id;
+    const name = this.props.name || this.props.id;
 
-    let value = values[name] || [];
+    let value = getValue(values, name) || [];
 
     // TODO 可以去掉 ？
     if (typeof value.fileList !== 'undefined') {
@@ -88,21 +93,21 @@ export default class PicturesWall extends React.Component {
     const dataType = this.props.dataType || (!this.isMultiple() ? 'string' : 'object');
     switch (dataType) {
       case 'string':
-        values[name] = value.length ? value[0].url : '';
+        value = value.length ? value[0].url : '';
         break;
 
       case 'array':
-        values[name] = value.map(file => file.url);
+        value = value.map(file => file.url);
         break;
 
       case 'object':
-        values[name] = value.map(file => {
+        value = value.map(file => {
           // 其他的附加数据呢？
           return {url: file.url};
         });
     }
 
-    return values;
+    return setValue(values, name, value);
   };
 
   handleCancel = () => this.setState({previewVisible: false});
