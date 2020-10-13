@@ -36,6 +36,11 @@ export default class PicturesWall extends React.Component {
      * 如果 Form.Item 是多级或 id 和 name 不相同时，需要自行指定 name
      */
     name: null,
+
+    /**
+     * 指定上传区域的大小
+     */
+    size: 104,
   }
 
   state = {
@@ -52,8 +57,9 @@ export default class PicturesWall extends React.Component {
   }
 
   inputConverter = (values) => {
+    const name = this.props.name || this.props.id;
     // 统一为 {fileList: []} 格式
-    return setValue(values, this.props.id, {fileList: this.convertInputFile(values[this.props.id])})
+    return setValue(values, name, {fileList: this.convertInputFile(getValue(values, name))});
   };
 
   convertInputFile = (value) => {
@@ -156,12 +162,30 @@ export default class PicturesWall extends React.Component {
   }
 
   render() {
-    const {url, max, fileList, ...rest} = this.props;
+    const id = this.props.id;
+    const {size, url, max, fileList, ...rest} = this.props;
     const files = this.processFileList(fileList);
 
     return (
-      // 上传单张图片时，不因隐藏上传图标而抖动页面
-      <div style={{minHeight: 118}}>
+      <div className={'ant-upload-container-' + id}>
+        {/* 使用内联CSS，简化依赖 */}
+        <style>
+          {`
+            .ant-upload-container-${id} {
+              /* 上传单张图片时，不因隐藏上传图标而抖动页面 */
+              min-height: ${size}px;
+              min-width: ${size}px;
+              line-height: 0; /* 移除空白 */
+            }
+            .ant-upload-container-${id} .ant-upload-list-picture-card-container,
+            .ant-upload-container-${id} .ant-upload-list-picture-card .ant-upload-list-item,
+            .ant-upload-container-${id} .ant-upload.ant-upload-select-picture-card {
+              width: ${size}px;
+              height: ${size}px;
+              ${max === 1 ? 'margin: 0;' : ''}
+            }
+          `}
+        </style>
         <Upload
           action={url}
           listType="picture-card"
