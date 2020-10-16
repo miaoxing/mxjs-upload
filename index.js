@@ -57,7 +57,7 @@ export default class PicturesWall extends React.Component {
   }
 
   inputConverter = (values) => {
-    const name = this.props.name || this.props.id;
+    const name = this.props.name || [this.props.id];
     // 统一为 {fileList: []} 格式
     return setValue(values, name, {fileList: this.convertInputFile(getValue(values, name))});
   };
@@ -87,7 +87,7 @@ export default class PicturesWall extends React.Component {
   }
 
   outputConverter = (values) => {
-    const name = this.props.name || this.props.id;
+    const name = this.props.name || [this.props.id];
 
     let value = getValue(values, name) || [];
 
