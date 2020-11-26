@@ -143,7 +143,7 @@ export default class PicturesWall extends React.Component {
         return;
       }
 
-      if (file.response.code === 1) {
+      if (file.response.code === 0) {
         file.status = 'done';
         file.url = file.response.url;
       } else {
