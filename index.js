@@ -109,7 +109,7 @@ export default class PicturesWall extends React.Component {
       case 'object':
         value = value.map(file => {
           // 其他的附加数据呢？
-          return {url: file.url};
+          return {id: file.id, url: file.url};
         });
     }
 
