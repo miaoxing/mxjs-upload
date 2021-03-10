@@ -1,6 +1,6 @@
 {
   "name": "@mxjs/upload",
-  "version": "0.3.4",
+  "version": "0.3.5",
   "main": "index.js",
   "author": "twinh",
   "license": "MIT",
@@ -15,7 +15,7 @@
     "antd": "^4.7.0",
     "rc-field-form": "^1.12.1",
     "@ant-design/icons": "^4.2.2",
-    "@mxjs/a-form": "^0.2.6"
+    "@mxjs/a-form": "^0.2.7"
   },
   "devDependencies": {
     "@testing-library/react": "^10.0.4",
