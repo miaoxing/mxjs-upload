@@ -1,3 +1,21 @@
+## [0.3.8](https://github.com/miaoxing/mxjs-upload/compare/v0.3.7...v0.3.8) (2021-03-12)
+
+
+### Bug Fixes
+
+* 更新前端包依赖 ([cb7fe6b](https://github.com/miaoxing/mxjs-upload/commit/cb7fe6ba97127b1260476458092ff1a0bb61a733))
+
+
+
+
+
+### Dependencies
+
+* **@mxjs/a-form:** upgrade from `0.2.9` to `0.2.10`
+* **babel-preset-miaoxing:** upgrade from `0.1.4` to `0.1.5`
+* **@miaoxing/dev:** upgrade from `6.3.2` to `6.3.3`
+* **@mxjs/test:** upgrade from `0.1.3` to `0.1.4`
+
 ## [0.3.7](https://github.com/miaoxing/mxjs-upload/compare/v0.3.6...v0.3.7) (2021-03-11)
 
 
