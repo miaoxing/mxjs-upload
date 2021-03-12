@@ -12,6 +12,8 @@
     "preset": "jest-preset-miaoxing"
   },
   "dependencies": {
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1",
     "antd": "^4.7.0",
     "rc-field-form": "^1.12.1",
     "@ant-design/icons": "^4.2.2",
