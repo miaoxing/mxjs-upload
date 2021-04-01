@@ -68,6 +68,11 @@ export default class PicturesWall extends React.Component {
       return [];
     }
 
+    // Case: 组件生成的值（如上传后）
+    if (typeof value.fileList !== 'undefined') {
+      return value.fileList;
+    }
+
     // Case: 字符串，例如单个图片
     if (typeof value === 'string') {
       return [{url: value}];
@@ -131,7 +136,7 @@ export default class PicturesWall extends React.Component {
   };
 
   processFileList(fileList) {
-    fileList = fileList ? fileList.fileList : [];
+    fileList = this.convertInputFile(fileList);
 
     fileList.map(file => {
       if (!file.uid) {

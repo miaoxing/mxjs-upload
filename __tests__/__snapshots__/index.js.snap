@@ -78,9 +78,11 @@ exports[`upload multiple: load and submit 1`] = `
         "data": Object {
           "image": Array [
             Object {
+              "id": undefined,
               "url": "1.jpg",
             },
             Object {
+              "id": undefined,
               "url": "2.jpg",
             },
           ],
@@ -124,6 +126,7 @@ exports[`upload multiple: load, remove and submit 1`] = `
         "data": Object {
           "image": Array [
             Object {
+              "id": undefined,
               "url": "2.jpg",
             },
           ],
