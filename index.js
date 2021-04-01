@@ -91,7 +91,7 @@ export default class PicturesWall extends React.Component {
 
     let value = getValue(values, name) || [];
 
-    // TODO 可以去掉 ？
+    // 提交时无值为 [], 有值为 {file:xxx, fileList:[]}
     if (typeof value.fileList !== 'undefined') {
       value = value.fileList;
     }
