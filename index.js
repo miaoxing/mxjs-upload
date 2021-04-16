@@ -94,12 +94,8 @@ export default class PicturesWall extends React.Component {
   outputConverter = (values) => {
     const name = this.props.name || [this.props.id];
 
-    let value = getValue(values, name) || [];
-
-    // 提交时无值为 [], 有值为 {file:xxx, fileList:[]}
-    if (typeof value.fileList !== 'undefined') {
-      value = value.fileList;
-    }
+    let value = getValue(values, name);
+    value = this.convertInputFile(value);
 
     const dataType = this.props.dataType || (!this.isMultiple() ? 'string' : 'object');
     switch (dataType) {
