@@ -26,5 +26,9 @@
     "core-js": "^3.6.5",
     "@miaoxing/dev": "^6.3.4",
     "@mxjs/test": "^0.1.5"
+  },
+  "ciDependencies": {
+    "@mxjs/a-form": "miaoxing/mxjs-a-form",
+    "@mxjs/box": "miaoxing/mxjs-box"
   }
 }
