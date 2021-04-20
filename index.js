@@ -41,7 +41,12 @@ export default class PicturesWall extends React.Component {
      * 指定上传区域的大小
      */
     size: 104,
-  }
+
+    /**
+     * 提交时如果没有图片，且数据类型是字符串，是否转换值为 `undefined`（即不提交给后台）
+     */
+    emptyToUndefined: false,
+  };
 
   state = {
     previewVisible: false,
@@ -88,8 +93,8 @@ export default class PicturesWall extends React.Component {
       return value;
     }
 
-    throw new Error('Unsupported upload value: ' + JSON.stringify(value))
-  }
+    throw new Error('Unsupported upload value: ' + JSON.stringify(value));
+  };
 
   outputConverter = (values) => {
     const name = this.props.name || [this.props.id];
@@ -100,7 +105,7 @@ export default class PicturesWall extends React.Component {
     const dataType = this.props.dataType || (!this.isMultiple() ? 'string' : 'object');
     switch (dataType) {
       case 'string':
-        value = value.length ? value[0].url : '';
+        value = value.length ? value[0].url : (this.props.emptyToUndefined ? undefined : '');
         break;
 
       case 'array':

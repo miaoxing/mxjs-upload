@@ -42,6 +42,32 @@ exports[`upload dataType：array 1`] = `
 }
 `;
 
+exports[`upload emptyToUndefined 1`] = `
+[MockFunction] {
+  "calls": Array [
+    Array [
+      Object {
+        "data": Object {
+          "image": undefined,
+        },
+        "loading": true,
+        "method": "POST",
+        "url": "",
+      },
+    ],
+  ],
+  "results": Array [
+    Object {
+      "type": "return",
+      "value": Promise {
+        "reject": [Function],
+        "resolve": [Function],
+      },
+    },
+  ],
+}
+`;
+
 exports[`upload max 1`] = `
 [MockFunction] {
   "calls": Array [

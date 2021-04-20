@@ -12,7 +12,7 @@ describe('upload', () => {
     $.http = jest.fn().mockImplementation(() => promise.resolve({
       code: 1,
       message: 'success',
-      data: {}
+      data: {},
     }));
 
     const {container} = render(<MemoryRouter>
@@ -39,12 +39,12 @@ describe('upload', () => {
       code: 1,
       message: 'success',
       data: {
-        image: '1.jpg'
-      }
+        image: '1.jpg',
+      },
     })).mockImplementation(() => promise2.resolve({
       code: 1,
       message: 'success',
-      data: {}
+      data: {},
     }));
 
     const {container} = render(<MemoryRouter>
@@ -74,12 +74,12 @@ describe('upload', () => {
       code: 1,
       message: 'success',
       data: {
-        image: '1.jpg'
-      }
+        image: '1.jpg',
+      },
     })).mockImplementation(() => promise2.resolve({
       code: 1,
       message: 'success',
-      data: {}
+      data: {},
     }));
 
     const {container, getByTitle} = render(<MemoryRouter>
@@ -110,7 +110,7 @@ describe('upload', () => {
     $.http = jest.fn().mockImplementation(() => promise.resolve({
       code: 1,
       message: 'success',
-      data: {}
+      data: {},
     }));
 
     const {container} = render(<MemoryRouter>
@@ -139,17 +139,17 @@ describe('upload', () => {
       data: {
         image: [
           {
-            url: '1.jpg'
+            url: '1.jpg',
           },
           {
-            url: '2.jpg'
-          }
-        ]
-      }
+            url: '2.jpg',
+          },
+        ],
+      },
     })).mockImplementation(() => promise2.resolve({
       code: 1,
       message: 'success',
-      data: {}
+      data: {},
     }));
 
     const {container} = render(<MemoryRouter>
@@ -185,13 +185,13 @@ describe('upload', () => {
           },
           {
             url: '2.jpg',
-          }
-        ]
-      }
+          },
+        ],
+      },
     })).mockImplementation(() => promise2.resolve({
       code: 1,
       message: 'success',
-      data: {}
+      data: {},
     }));
 
     const {container, getAllByTitle} = render(<MemoryRouter>
@@ -224,8 +224,8 @@ describe('upload', () => {
       code: 1,
       message: 'success',
       data: {
-        image: '1.jpg'
-      }
+        image: '1.jpg',
+      },
     }));
 
     const {container, getByTitle} = render(<MemoryRouter>
@@ -259,17 +259,17 @@ describe('upload', () => {
       data: {
         image: [
           {
-            url: '1.jpg'
+            url: '1.jpg',
           },
           {
-            url: '2.jpg'
-          }
-        ]
-      }
+            url: '2.jpg',
+          },
+        ],
+      },
     })).mockImplementation(() => promise2.resolve({
       code: 1,
       message: 'success',
-      data: {}
+      data: {},
     }));
 
     const {container} = render(<MemoryRouter>
@@ -288,6 +288,31 @@ describe('upload', () => {
 
     container.querySelector('form').submit();
     await promise2;
+
+    expect($.http).toMatchSnapshot();
+  });
+
+  test('emptyToUndefined', async () => {
+    const promise = createPromise();
+    $.http = jest.fn().mockImplementation(() => promise.resolve({
+      code: 1,
+      message: 'success',
+      data: {},
+    }));
+
+    const {container} = render(<MemoryRouter>
+      <Form initialValues={{}}>
+        <FormItem
+          name="image"
+          valuePropName="fileList"
+        >
+          <Upload max={1} emptyToUndefined/>
+        </FormItem>
+      </Form>
+    </MemoryRouter>);
+
+    container.querySelector('form').submit();
+    await promise;
 
     expect($.http).toMatchSnapshot();
   });
