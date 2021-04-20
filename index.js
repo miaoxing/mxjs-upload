@@ -99,13 +99,18 @@ export default class PicturesWall extends React.Component {
   outputConverter = (values) => {
     const name = this.props.name || [this.props.id];
 
-    let value = getValue(values, name);
-    value = this.convertInputFile(value);
+    const origValue = getValue(values, name);
+    let value = this.convertInputFile(origValue);
 
     const dataType = this.props.dataType || (!this.isMultiple() ? 'string' : 'object');
     switch (dataType) {
       case 'string':
         value = value.length ? value[0].url : (this.props.emptyToUndefined ? undefined : '');
+
+        // IMPORTANT: Form.List 中，如果前后值都是 undefined，不用更新回去，以免生成空的对象
+        if (typeof origValue === 'undefined' && typeof value === 'undefined') {
+          return values;
+        }
         break;
 
       case 'array':
