@@ -3,6 +3,7 @@ import {Upload, Modal} from 'antd';
 import {PlusOutlined} from '@ant-design/icons';
 import {FormContext} from '@mxjs/a-form';
 import {setValue, getValue} from 'rc-field-form/lib/utils/valueUtil';
+import PropTypes from 'prop-types';
 
 function getBase64(file) {
   return new Promise((resolve, reject) => {
@@ -46,6 +47,17 @@ export default class PicturesWall extends React.Component {
      * 提交时如果没有图片，且数据类型是字符串，是否转换值为 `undefined`（即不提交给后台）
      */
     emptyToUndefined: false,
+  };
+
+  static propTypes = {
+    url: PropTypes.string,
+    max: PropTypes.number,
+    dataType: PropTypes.string,
+    name: PropTypes.array,
+    id: PropTypes.string,
+    size: PropTypes.number,
+    emptyToUndefined: PropTypes.bool,
+    fileList: PropTypes.any,
   };
 
   state = {

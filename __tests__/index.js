@@ -219,7 +219,6 @@ describe('upload', () => {
 
   test('max', async () => {
     const promise = createPromise();
-    const promise2 = createPromise();
     $.http = jest.fn().mockImplementationOnce(() => promise.resolve({
       code: 1,
       message: 'success',
