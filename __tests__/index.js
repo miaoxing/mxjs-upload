@@ -7,6 +7,20 @@ import {createPromise} from '@mxjs/test';
 import $ from 'miaoxing';
 
 describe('upload', () => {
+  test('one: value', async () => {
+    const {container} = render(<MemoryRouter>
+      <Form initialValues={{
+        image: '1.jpg',
+      }}>
+        <FormItem name="image">
+          <Upload max={1}/>
+        </FormItem>
+      </Form>
+    </MemoryRouter>);
+
+    await waitFor(() => expect(container.querySelector('.ant-upload-list-item-image')).not.toBeNull());
+  });
+
   test('one: submit', async () => {
     const promise = createPromise();
     $.http = jest.fn().mockImplementation(() => promise.resolve({
@@ -17,10 +31,7 @@ describe('upload', () => {
 
     const {container} = render(<MemoryRouter>
       <Form initialValues={{}}>
-        <FormItem
-          name="image"
-          valuePropName="fileList"
-        >
+        <FormItem name="image">
           <Upload max={1}/>
         </FormItem>
       </Form>
@@ -49,10 +60,7 @@ describe('upload', () => {
 
     const {container} = render(<MemoryRouter>
       <Form>
-        <FormItem
-          name="image"
-          valuePropName="fileList"
-        >
+        <FormItem name="image">
           <Upload max={1}/>
         </FormItem>
       </Form>
@@ -84,10 +92,7 @@ describe('upload', () => {
 
     const {container, getByTitle} = render(<MemoryRouter>
       <Form>
-        <FormItem
-          name="image"
-          valuePropName="fileList"
-        >
+        <FormItem name="image">
           <Upload max={1}/>
         </FormItem>
       </Form>
@@ -115,10 +120,7 @@ describe('upload', () => {
 
     const {container} = render(<MemoryRouter>
       <Form initialValues={{}}>
-        <FormItem
-          name="image"
-          valuePropName="fileList"
-        >
+        <FormItem name="image">
           <Upload max={9}/>
         </FormItem>
       </Form>
@@ -154,10 +156,7 @@ describe('upload', () => {
 
     const {container} = render(<MemoryRouter>
       <Form>
-        <FormItem
-          name="image"
-          valuePropName="fileList"
-        >
+        <FormItem name="image">
           <Upload max={9}/>
         </FormItem>
       </Form>
@@ -168,6 +167,10 @@ describe('upload', () => {
 
     container.querySelector('form').submit();
     await promise2;
+
+    $.http.mock.calls[1][0].data.image.forEach(image => {
+      image.uid = 'fixed';
+    });
 
     expect($.http).toMatchSnapshot();
   });
@@ -196,10 +199,7 @@ describe('upload', () => {
 
     const {container, getAllByTitle} = render(<MemoryRouter>
       <Form>
-        <FormItem
-          name="image"
-          valuePropName="fileList"
-        >
+        <FormItem name="image">
           <Upload max={9}/>
         </FormItem>
       </Form>
@@ -229,10 +229,7 @@ describe('upload', () => {
 
     const {container, getByTitle} = render(<MemoryRouter>
       <Form>
-        <FormItem
-          name="image"
-          valuePropName="fileList"
-        >
+        <FormItem name="image">
           <Upload max={1}/>
         </FormItem>
       </Form>
@@ -257,10 +254,47 @@ describe('upload', () => {
       message: 'success',
       data: {
         image: [
+          '1.jpg',
+          '2.jpg',
+        ],
+      },
+    })).mockImplementation(() => promise2.resolve({
+      code: 1,
+      message: 'success',
+      data: {},
+    }));
+
+    const {container} = render(<MemoryRouter>
+      <Form>
+        <FormItem name="image">
+          <Upload max={9} dataType="array"/>
+        </FormItem>
+      </Form>
+    </MemoryRouter>);
+
+    await promise;
+    await waitFor(() => expect(container.querySelector('.ant-upload-list-item-image')).not.toBeNull());
+
+    container.querySelector('form').submit();
+    await promise2;
+
+    expect($.http).toMatchSnapshot();
+  });
+
+  test('dataType：object', async () => {
+    const promise = createPromise();
+    const promise2 = createPromise();
+    $.http = jest.fn().mockImplementationOnce(() => promise.resolve({
+      code: 1,
+      message: 'success',
+      data: {
+        image: [
           {
+            uid: '1.jpg',
             url: '1.jpg',
           },
           {
+            uid: '2.jpg',
             url: '2.jpg',
           },
         ],
@@ -273,11 +307,8 @@ describe('upload', () => {
 
     const {container} = render(<MemoryRouter>
       <Form>
-        <FormItem
-          name="image"
-          valuePropName="fileList"
-        >
-          <Upload max={9} dataType="array"/>
+        <FormItem name="image">
+          <Upload max={9} dataType="object"/>
         </FormItem>
       </Form>
     </MemoryRouter>);
@@ -301,10 +332,7 @@ describe('upload', () => {
 
     const {container} = render(<MemoryRouter>
       <Form initialValues={{}}>
-        <FormItem
-          name="image"
-          valuePropName="fileList"
-        >
+        <FormItem name="image">
           <Upload max={1} emptyToUndefined/>
         </FormItem>
       </Form>

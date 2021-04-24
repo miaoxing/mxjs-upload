@@ -42,6 +42,54 @@ exports[`upload dataType：array 1`] = `
 }
 `;
 
+exports[`upload dataType：object 1`] = `
+[MockFunction] {
+  "calls": Array [
+    Array [
+      Object {
+        "method": "get",
+        "url": "",
+      },
+    ],
+    Array [
+      Object {
+        "data": Object {
+          "image": Array [
+            Object {
+              "uid": "1.jpg",
+              "url": "1.jpg",
+            },
+            Object {
+              "uid": "2.jpg",
+              "url": "2.jpg",
+            },
+          ],
+        },
+        "loading": true,
+        "method": "POST",
+        "url": "",
+      },
+    ],
+  ],
+  "results": Array [
+    Object {
+      "type": "return",
+      "value": Promise {
+        "reject": [Function],
+        "resolve": [Function],
+      },
+    },
+    Object {
+      "type": "return",
+      "value": Promise {
+        "reject": [Function],
+        "resolve": [Function],
+      },
+    },
+  ],
+}
+`;
+
 exports[`upload emptyToUndefined 1`] = `
 [MockFunction] {
   "calls": Array [
@@ -104,11 +152,11 @@ exports[`upload multiple: load and submit 1`] = `
         "data": Object {
           "image": Array [
             Object {
-              "id": undefined,
+              "uid": "fixed",
               "url": "1.jpg",
             },
             Object {
-              "id": undefined,
+              "uid": "fixed",
               "url": "2.jpg",
             },
           ],
@@ -188,7 +236,7 @@ exports[`upload multiple: submit 1`] = `
     Array [
       Object {
         "data": Object {
-          "image": Array [],
+          "image": undefined,
         },
         "loading": true,
         "method": "POST",
@@ -292,7 +340,7 @@ exports[`upload one: submit 1`] = `
     Array [
       Object {
         "data": Object {
-          "image": "",
+          "image": undefined,
         },
         "loading": true,
         "method": "POST",

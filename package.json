@@ -14,11 +14,10 @@
   "dependencies": {
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
-    "antd": "^4.7.0",
-    "rc-field-form": "^1.12.1",
+    "antd": "^4.15.2",
     "@ant-design/icons": "^4.2.2",
-    "@mxjs/a-form": "^0.2.12",
-    "prop-types": "^15.7.2"
+    "prop-types": "^15.7.2",
+    "lodash": "^4.17.21"
   },
   "devDependencies": {
     "@testing-library/react": "^10.0.4",
@@ -26,7 +25,8 @@
     "babel-preset-miaoxing": "^0.2.0",
     "core-js": "^3.6.5",
     "@miaoxing/dev": "^6.3.4",
-    "@mxjs/test": "^0.1.5"
+    "@mxjs/test": "^0.1.5",
+    "@mxjs/a-form": "^0.2.12"
   },
   "ciDependencies": {
     "@mxjs/a-form": "miaoxing/mxjs-a-form",

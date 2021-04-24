@@ -1,9 +1,8 @@
 import React from 'react';
 import {Upload, Modal} from 'antd';
 import {PlusOutlined} from '@ant-design/icons';
-import {FormContext} from '@mxjs/a-form';
-import {setValue, getValue} from 'rc-field-form/lib/utils/valueUtil';
 import PropTypes from 'prop-types';
+import {isEqual, isEmpty} from 'lodash';
 
 function getBase64(file) {
   return new Promise((resolve, reject) => {
@@ -15,8 +14,6 @@ function getBase64(file) {
 }
 
 export default class PicturesWall extends React.Component {
-  static contextType = FormContext;
-
   static defaultProps = {
     /**
      * 提交到后台的地址
@@ -34,17 +31,12 @@ export default class PicturesWall extends React.Component {
     dataType: null,
 
     /**
-     * 如果 Form.Item 是多级或 id 和 name 不相同时，需要自行指定 name
-     */
-    name: null,
-
-    /**
      * 指定上传区域的大小
      */
     size: 104,
 
     /**
-     * 提交时如果没有图片，且数据类型是字符串，是否转换值为 `undefined`（即不提交给后台）
+     * 提交时如果没有图片，是否转换值为 `undefined`（即不提交给后台）
      */
     emptyToUndefined: false,
   };
@@ -53,41 +45,45 @@ export default class PicturesWall extends React.Component {
     url: PropTypes.string,
     max: PropTypes.number,
     dataType: PropTypes.string,
-    name: PropTypes.array,
     id: PropTypes.string,
     size: PropTypes.number,
+    value: PropTypes.any,
+    onChange: PropTypes.func,
     emptyToUndefined: PropTypes.bool,
-    fileList: PropTypes.any,
   };
 
   state = {
+    fileList: [],
     previewVisible: false,
     previewImage: '',
     previewTitle: '',
   };
 
-  constructor(props, context) {
-    super(props, context);
+  constructor(props) {
+    super(props);
 
-    context.setInputConverter(this.inputConverter);
-    context.setOutputConverter(this.outputConverter);
+    if (props.value) {
+      this.state.fileList = this.convertToFileList(props.value);
+    }
   }
 
-  inputConverter = (values) => {
-    const name = this.props.name || [this.props.id];
-    // 统一为 {fileList: []} 格式
-    return setValue(values, name, {fileList: this.convertInputFile(getValue(values, name))});
-  };
+  componentDidUpdate(prevProps) {
+    if (this.props.value !== prevProps.value) {
+      const fileList = this.convertToFileList(this.props.value);
+      if (!isEqual(this.convertToInputValue(this.state.fileList), this.convertToInputValue(fileList))) {
+        // 如果值和 state 相同（例如通过 onChange 触发），不用更新
+        this.setState({fileList});
+      }
+    }
+  }
 
-  convertInputFile = (value) => {
+  /**
+   * Convert input value to file list
+   */
+  convertToFileList = (value) => {
     // Case: 无值，例如刚初始化
     if (!value) {
       return [];
-    }
-
-    // Case: 组件生成的值（如上传后）
-    if (typeof value.fileList !== 'undefined') {
-      return value.fileList;
     }
 
     // Case: 字符串，例如单个图片
@@ -108,35 +104,32 @@ export default class PicturesWall extends React.Component {
     throw new Error('Unsupported upload value: ' + JSON.stringify(value));
   };
 
-  outputConverter = (values) => {
-    const name = this.props.name || [this.props.id];
-
-    const origValue = getValue(values, name);
-    let value = this.convertInputFile(origValue);
-
-    const dataType = this.props.dataType || (!this.isMultiple() ? 'string' : 'object');
+  /**
+   * Convert file list to input value
+   */
+  convertToInputValue = (fileList) => {
+    let value;
+    const dataType = this.props.dataType || (this.isMultiple() ? 'object' : 'string');
     switch (dataType) {
       case 'string':
-        value = value.length ? value[0].url : (this.props.emptyToUndefined ? undefined : '');
-
-        // IMPORTANT: Form.List 中，如果前后值都是 undefined，不用更新回去，以免生成空的对象
-        if (typeof origValue === 'undefined' && typeof value === 'undefined') {
-          return values;
-        }
+        value = fileList.length ? fileList[0].url : '';
         break;
 
       case 'array':
-        value = value.map(file => file.url);
+        value = fileList.map(file => file.url);
         break;
 
       case 'object':
-        value = value.map(file => {
+        value = fileList.map(file => {
           // 其他的附加数据呢？
           return {id: file.id, url: file.url};
         });
     }
 
-    return setValue(values, name, value);
+    if (this.props.emptyToUndefined && isEmpty(value)) {
+      value = undefined;
+    }
+    return value;
   };
 
   handleCancel = () => this.setState({previewVisible: false});
@@ -154,13 +147,7 @@ export default class PicturesWall extends React.Component {
   };
 
   processFileList(fileList) {
-    fileList = this.convertInputFile(fileList);
-
-    fileList.map(file => {
-      if (!file.uid) {
-        file.uid = file.url;
-      }
-
+    fileList.forEach(file => {
       // 后台返回了，则更新后台的信息
       if (!file.response) {
         return;
@@ -186,8 +173,7 @@ export default class PicturesWall extends React.Component {
 
   render() {
     const id = this.props.id;
-    const {size, url, max, fileList, ...rest} = this.props;
-    const files = this.processFileList(fileList);
+    const {size, url, max, value, onChange, ...rest} = this.props;
 
     return (
       <div className={'ant-upload-container-' + id}>
@@ -212,7 +198,7 @@ export default class PicturesWall extends React.Component {
         <Upload
           action={url}
           listType="picture-card"
-          fileList={files}
+          fileList={this.state.fileList}
           onPreview={this.handlePreview}
           multiple={this.isMultiple()}
           locale={{
@@ -221,9 +207,14 @@ export default class PicturesWall extends React.Component {
             downloadFile: '下载文件',
             uploading: '上传中...',
           }}
+          onChange={(value) => {
+            const fileList = this.processFileList(value.fileList);
+            this.setState({fileList});
+            onChange(this.convertToInputValue(fileList));
+          }}
           {...rest}
         >
-          {(max && files.length >= max) ? null : <div>
+          {(max && this.state.fileList.length >= max) ? null : <div>
             <PlusOutlined/>
           </div>}
         </Upload>
