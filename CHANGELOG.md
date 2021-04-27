@@ -1,3 +1,36 @@
+# [0.4.0](https://github.com/miaoxing/mxjs-upload/compare/v0.3.10...v0.4.0) (2021-04-27)
+
+
+### Bug Fixes
+
+* 动态添加上传组件时，不会触发 `inputConverter`，需每次渲染前转换数据 ([b3a15e9](https://github.com/miaoxing/mxjs-upload/commit/b3a15e9ab6f3fc92048532cda9c8ec21dd275a10))
+* 提交时值为字符串，会被转换为空值 ([975bd30](https://github.com/miaoxing/mxjs-upload/commit/975bd30de3e2fef789cee69098bf5d855bf9be3e))
+* 提交时如果前后值都是 `undefined`，不用更新回去，以免生成空的对象 ([8c2c95e](https://github.com/miaoxing/mxjs-upload/commit/8c2c95ebabe896db2b41e473cb5b6471f6e8687c))
+* 解决上传后获取到的值是 `fileList` 对象的问题 ([fec10c9](https://github.com/miaoxing/mxjs-upload/commit/fec10c90e2e229e35e5f6fa0b705137451372241))
+
+
+### Features
+
+* 增加 `emptyToUndefined` 选项，用于提交时如果没有图片，且数据类型是字符串，是否转换值为 `undefined`（即不提交给后台） ([e9062aa](https://github.com/miaoxing/mxjs-upload/commit/e9062aa385434062fa887c28b677d05d34bbab6f))
+
+
+### BREAKING CHANGES
+
+* `fileList` 属性改为 `value`，`Form.Item` 无需再指定 `valuePropName="fileList"`
+-. 移除 `name` 属性，内部改为通过 `onChange` 更改数据
+-. 启用 `emptyToUndefined` 属性后，值为空数组和对象时，也会转换为 `undefined`
+
+
+
+
+
+### Dependencies
+
+* **babel-preset-miaoxing:** upgrade from `0.2.0` to `0.3.0`
+* **@miaoxing/dev:** upgrade from `6.3.4` to `6.4.0`
+* **@mxjs/test:** upgrade from `0.1.5` to `0.1.6`
+* **@mxjs/a-form:** upgrade from `0.2.12` to `0.2.13`
+
 ## [0.3.10](https://github.com/miaoxing/mxjs-upload/compare/v0.3.9...v0.3.10) (2021-03-22)
 
 
