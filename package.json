@@ -30,6 +30,8 @@
   },
   "ciDependencies": {
     "@mxjs/a-form": "miaoxing/mxjs-a-form",
-    "@mxjs/box": "miaoxing/mxjs-box"
+    "@mxjs/box": "miaoxing/mxjs-box",
+    "babel-preset-miaoxing": "miaoxing/babel-preset-miaoxing",
+    "@miaoxing/dev": "miaoxing/dev"
   }
 }
