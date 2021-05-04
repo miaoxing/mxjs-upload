@@ -15,7 +15,7 @@
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "antd": "^4.15.2",
-    "@ant-design/icons": "^4.2.2",
+    "@ant-design/icons": "^4.6.2",
     "prop-types": "^15.7.2",
     "lodash": "^4.17.21"
   },
