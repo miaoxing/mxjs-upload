@@ -112,7 +112,7 @@ export default class PicturesWall extends React.Component {
     const dataType = this.props.dataType || (this.isMultiple() ? 'object' : 'string');
     switch (dataType) {
       case 'string':
-        value = fileList.length ? fileList[0].url : '';
+        value = fileList?.[0]?.url || '';
         break;
 
       case 'array':
