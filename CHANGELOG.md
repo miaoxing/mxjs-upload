@@ -1,3 +1,10 @@
+## [0.4.3](https://github.com/miaoxing/mxjs-upload/compare/v0.4.2...v0.4.3) (2021-05-21)
+
+
+### Bug Fixes
+
+* **upload:** 上传单张图片失败 ([e376e80](https://github.com/miaoxing/mxjs-upload/commit/e376e805484147264c184705f87e8acf6d2eca99))
+
 ## [0.4.2](https://github.com/miaoxing/mxjs-upload/compare/v0.4.1...v0.4.2) (2021-05-12)
 
 
