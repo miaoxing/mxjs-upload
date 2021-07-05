@@ -1,4 +1,3 @@
-import React from 'react';
 import Upload from '..';
 import {render, waitFor, fireEvent} from '@testing-library/react';
 import {Form, FormItem} from '@mxjs/a-form';
