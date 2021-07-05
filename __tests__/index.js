@@ -24,7 +24,7 @@ describe('upload', () => {
     const promise = createPromise();
     $.http = jest.fn().mockImplementation(() => promise.resolve({
       ret: {
-        code: 1,
+        code: 0,
         message: 'success',
         data: {},
       },
@@ -49,7 +49,7 @@ describe('upload', () => {
     const promise2 = createPromise();
     $.http = jest.fn().mockImplementationOnce(() => promise.resolve({
       ret: {
-        code: 1,
+        code: 0,
         message: 'success',
         data: {
           image: '1.jpg',
@@ -57,7 +57,7 @@ describe('upload', () => {
       },
     })).mockImplementation(() => promise2.resolve({
       ret: {
-        code: 1,
+        code: 0,
         message: 'success',
         data: {},
       },
@@ -85,7 +85,7 @@ describe('upload', () => {
     const promise2 = createPromise();
     $.http = jest.fn().mockImplementationOnce(() => promise.resolve({
       ret: {
-        code: 1,
+        code: 0,
         message: 'success',
         data: {
           image: '1.jpg',
@@ -123,7 +123,7 @@ describe('upload', () => {
     const promise = createPromise();
     $.http = jest.fn().mockImplementation(() => promise.resolve({
       ret: {
-        code: 1,
+        code: 0,
         message: 'success',
         data: {},
       },
@@ -148,7 +148,7 @@ describe('upload', () => {
     const promise2 = createPromise();
     $.http = jest.fn().mockImplementationOnce(() => promise.resolve({
       ret: {
-        code: 1,
+        code: 0,
         message: 'success',
         data: {
           image: [
@@ -163,7 +163,7 @@ describe('upload', () => {
       },
     })).mockImplementation(() => promise2.resolve({
       ret: {
-        code: 1,
+        code: 0,
         message: 'success',
         data: {},
       },
@@ -195,7 +195,7 @@ describe('upload', () => {
     const promise2 = createPromise();
     $.http = jest.fn().mockImplementationOnce(() => promise.resolve({
       ret: {
-        code: 1,
+        code: 0,
         message: 'success',
         data: {
           image: [
@@ -210,7 +210,7 @@ describe('upload', () => {
       },
     })).mockImplementation(() => promise2.resolve({
       ret: {
-        code: 1,
+        code: 0,
         message: 'success',
         data: {},
       },
@@ -240,7 +240,7 @@ describe('upload', () => {
     const promise = createPromise();
     $.http = jest.fn().mockImplementationOnce(() => promise.resolve({
       ret: {
-        code: 1,
+        code: 0,
         message: 'success',
         data: {
           image: '1.jpg',
@@ -272,7 +272,7 @@ describe('upload', () => {
     const promise2 = createPromise();
     $.http = jest.fn().mockImplementationOnce(() => promise.resolve({
       ret: {
-        code: 1,
+        code: 0,
         message: 'success',
         data: {
           image: [
@@ -283,7 +283,7 @@ describe('upload', () => {
       },
     })).mockImplementation(() => promise2.resolve({
       ret: {
-        code: 1,
+        code: 0,
         message: 'success',
         data: {},
       },
@@ -311,7 +311,7 @@ describe('upload', () => {
     const promise2 = createPromise();
     $.http = jest.fn().mockImplementationOnce(() => promise.resolve({
       ret: {
-        code: 1,
+        code: 0,
         message: 'success',
         data: {
           image: [
@@ -328,7 +328,7 @@ describe('upload', () => {
       },
     })).mockImplementation(() => promise2.resolve({
       ret: {
-        code: 1,
+        code: 0,
         message: 'success',
         data: {},
       },
@@ -355,7 +355,7 @@ describe('upload', () => {
     const promise = createPromise();
     $.http = jest.fn().mockImplementation(() => promise.resolve({
       ret: {
-        code: 1,
+        code: 0,
         message: 'success',
         data: {},
       },

@@ -37,6 +37,7 @@
     "@mxjs/box": "miaoxing/mxjs-box",
     "babel-preset-miaoxing": "miaoxing/babel-preset-miaoxing",
     "jest-preset-miaoxing": "miaoxing/jest-preset-miaoxing",
-    "@miaoxing/dev": "miaoxing/dev"
+    "@miaoxing/dev": "miaoxing/dev",
+    "miaoxing": "miaoxing/miaoxing-js"
   }
 }
