@@ -12,8 +12,6 @@
     "preset": "jest-preset-miaoxing"
   },
   "dependencies": {
-    "react": "^16.13.1",
-    "react-dom": "^16.13.1",
     "antd": "^4.15.2",
     "@ant-design/icons": "^4.6.2",
     "prop-types": "^15.7.2",
@@ -26,7 +24,13 @@
     "core-js": "^3.6.5",
     "@miaoxing/dev": "^7.0.1",
     "@mxjs/test": "^0.1.8",
-    "@mxjs/a-form": "^0.2.15"
+    "@mxjs/a-form": "^0.2.15",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2"
+  },
+  "peerDependencies": {
+    "react": ">=16.13.1",
+    "react-dom": ">=16.13.1"
   },
   "ciDependencies": {
     "@mxjs/a-form": "miaoxing/mxjs-a-form",
