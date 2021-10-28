@@ -1,3 +1,26 @@
+# [0.5.0](https://github.com/miaoxing/mxjs-upload/compare/v0.4.3...v0.5.0) (2021-10-28)
+
+
+### Features
+
+* `react` 依赖移到 `peerDependencies` 中，开发依赖使用 `react` 17 ([80272be](https://github.com/miaoxing/mxjs-upload/commit/80272beac0b3f129c2b43db9fc310cf19b587375))
+
+
+### BREAKING CHANGES
+
+* `react` 依赖移到 `peerDependencies` 中，开发依赖使用 `react` 17
+
+
+
+
+
+### Dependencies
+
+* **babel-preset-miaoxing:** upgrade from `0.4.0` to `0.5.0`
+* **@miaoxing/dev:** upgrade from `7.0.1` to `8.0.0`
+* **@mxjs/test:** upgrade from `0.1.8` to `0.2.0`
+* **@mxjs/a-form:** upgrade from `0.2.15` to `0.3.0`
+
 ## [0.4.3](https://github.com/miaoxing/mxjs-upload/compare/v0.4.2...v0.4.3) (2021-05-21)
 
 
