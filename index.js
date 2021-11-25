@@ -57,6 +57,7 @@ export default class PicturesWall extends Component {
     previewVisible: false,
     previewImage: '',
     previewTitle: '',
+    headers: {},
   };
 
   constructor(props) {
@@ -64,6 +65,11 @@ export default class PicturesWall extends Component {
 
     if (props.value) {
       this.state.fileList = this.convertToFileList(props.value);
+    }
+
+    const token = window.localStorage.getItem('token');
+    if (token) {
+      this.state.headers.Authorization = 'Bearer ' + token;
     }
   }
 
@@ -197,6 +203,7 @@ export default class PicturesWall extends Component {
         </style>
         <Upload
           action={url}
+          headers={this.state.headers}
           listType="picture-card"
           fileList={this.state.fileList}
           onPreview={this.handlePreview}
