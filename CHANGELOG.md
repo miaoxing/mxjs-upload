@@ -1,3 +1,22 @@
+## [0.5.1](https://github.com/miaoxing/mxjs-upload/compare/v0.5.0...v0.5.1) (2022-01-12)
+
+
+### Features
+
+* 更新 `antd` 到 `~4.17.4` ([b10c747](https://github.com/miaoxing/mxjs-upload/commit/b10c7477674afa8afae4279e1e533e816f896aef))
+* **upload:** 上传时 `header` 加上登录的 `token` ([bf5312f](https://github.com/miaoxing/mxjs-upload/commit/bf5312f13c5194eb7108afa9216ecfdd59160868))
+
+
+
+
+
+### Dependencies
+
+* **babel-preset-miaoxing:** upgrade from `0.5.0` to `0.6.0`
+* **@miaoxing/dev:** upgrade from `8.0.0` to `8.0.1`
+* **@mxjs/test:** upgrade from `0.2.0` to `0.2.1`
+* **@mxjs/a-form:** upgrade from `0.3.0` to `0.3.1`
+
 # [0.5.0](https://github.com/miaoxing/mxjs-upload/compare/v0.4.3...v0.5.0) (2021-10-28)
 
 
