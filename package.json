@@ -1,6 +1,6 @@
 {
   "name": "@mxjs/upload",
-  "version": "0.5.1",
+  "version": "0.5.2",
   "main": "index.js",
   "author": "twinh",
   "license": "MIT",
@@ -22,9 +22,9 @@
     "babel-jest": "^25.4.0",
     "babel-preset-miaoxing": "^0.6.0",
     "core-js": "^3.6.5",
-    "@miaoxing/dev": "^8.0.1",
-    "@mxjs/test": "^0.2.1",
-    "@mxjs/a-form": "^0.3.1",
+    "@miaoxing/dev": "^8.1.0",
+    "@mxjs/test": "^0.2.2",
+    "@mxjs/a-form": "^0.3.2",
     "react": "^17.0.2",
     "react-dom": "^17.0.2"
   },
