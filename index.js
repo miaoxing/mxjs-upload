@@ -161,7 +161,7 @@ export default class PicturesWall extends Component {
 
       if (file.response.code === 0) {
         file.status = 'done';
-        file.url = file.response.url;
+        file.url = file.response.data.url;
       } else {
         file.status = 'error';
         file.error = {
