@@ -1,3 +1,15 @@
+# [0.6.0](https://github.com/miaoxing/mxjs-upload/compare/v0.5.2...v0.6.0) (2022-02-28)
+
+
+### Code Refactoring
+
+* **upload:** 根据上传接口返回值调整 URL ([70b0caf](https://github.com/miaoxing/mxjs-upload/commit/70b0caf175f7b7e5f98e0c7c669802bdfc795fa3))
+
+
+### BREAKING CHANGES
+
+* **upload:** 根据上传接口返回值调整 URL
+
 ## [0.5.2](https://github.com/miaoxing/mxjs-upload/compare/v0.5.1...v0.5.2) (2022-02-05)
 
 
