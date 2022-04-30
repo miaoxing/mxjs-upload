@@ -1,3 +1,13 @@
+## [0.6.3](https://github.com/miaoxing/mxjs-upload/compare/v0.6.2...v0.6.3) (2022-04-30)
+
+
+
+
+
+### Dependencies
+
+* **@mxjs/a-form:** upgrade from `0.3.4` to `0.3.5`
+
 ## [0.6.2](https://github.com/miaoxing/mxjs-upload/compare/v0.6.1...v0.6.2) (2022-03-31)
 
 
