@@ -1,3 +1,16 @@
+## [0.6.6](https://github.com/miaoxing/mxjs-upload/compare/v0.6.5...v0.6.6) (2022-07-01)
+
+
+
+
+
+### Dependencies
+
+* **babel-preset-miaoxing:** upgrade from `0.6.0` to `0.6.1`
+* **@miaoxing/dev:** upgrade from `8.1.1` to `8.1.2`
+* **@mxjs/test:** upgrade from `0.2.6` to `1.0.0`
+* **@mxjs/a-form:** upgrade from `0.3.7` to `1.0.0`
+
 ## [0.6.5](https://github.com/miaoxing/mxjs-upload/compare/v0.6.4...v0.6.5) (2022-06-06)
 
 
