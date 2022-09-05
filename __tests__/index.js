@@ -3,7 +3,7 @@ import {render, waitFor, fireEvent} from '@testing-library/react';
 import {Form, FormItem} from '@mxjs/a-form';
 import {MemoryRouter} from 'react-router';
 import {createPromise} from '@mxjs/test';
-import $ from 'miaoxing';
+import $, {Ret} from 'miaoxing';
 
 describe('upload', () => {
   test('one: value', async () => {
@@ -23,11 +23,7 @@ describe('upload', () => {
   test('one: submit', async () => {
     const promise = createPromise();
     $.http = jest.fn().mockImplementation(() => promise.resolve({
-      ret: {
-        code: 0,
-        message: 'success',
-        data: {},
-      },
+      ret: Ret.suc(),
     }));
 
     const {container} = render(<MemoryRouter>
@@ -48,19 +44,13 @@ describe('upload', () => {
     const promise = createPromise();
     const promise2 = createPromise();
     $.http = jest.fn().mockImplementationOnce(() => promise.resolve({
-      ret: {
-        code: 0,
-        message: 'success',
+      ret: Ret.suc({
         data: {
           image: '1.jpg',
         },
-      },
+      }),
     })).mockImplementation(() => promise2.resolve({
-      ret: {
-        code: 0,
-        message: 'success',
-        data: {},
-      },
+      ret: Ret.suc(),
     }));
 
     const {container} = render(<MemoryRouter>
@@ -84,19 +74,13 @@ describe('upload', () => {
     const promise = createPromise();
     const promise2 = createPromise();
     $.http = jest.fn().mockImplementationOnce(() => promise.resolve({
-      ret: {
-        code: 0,
-        message: 'success',
+      ret: Ret.suc({
         data: {
           image: '1.jpg',
         },
-      },
+      }),
     })).mockImplementation(() => promise2.resolve({
-      ret: {
-        code: 0,
-        message: 'success',
-        data: {},
-      },
+      ret: Ret.suc(),
     }));
 
     const {container, getByTitle} = render(<MemoryRouter>
@@ -122,11 +106,7 @@ describe('upload', () => {
   test('multiple: submit', async () => {
     const promise = createPromise();
     $.http = jest.fn().mockImplementation(() => promise.resolve({
-      ret: {
-        code: 0,
-        message: 'success',
-        data: {},
-      },
+      ret: Ret.suc(),
     }));
 
     const {container} = render(<MemoryRouter>
@@ -147,9 +127,7 @@ describe('upload', () => {
     const promise = createPromise();
     const promise2 = createPromise();
     $.http = jest.fn().mockImplementationOnce(() => promise.resolve({
-      ret: {
-        code: 0,
-        message: 'success',
+      ret: Ret.suc({
         data: {
           image: [
             {
@@ -160,13 +138,9 @@ describe('upload', () => {
             },
           ],
         },
-      },
+      }),
     })).mockImplementation(() => promise2.resolve({
-      ret: {
-        code: 0,
-        message: 'success',
-        data: {},
-      },
+      ret: Ret.suc(),
     }));
 
     const {container} = render(<MemoryRouter>
@@ -194,9 +168,7 @@ describe('upload', () => {
     const promise = createPromise();
     const promise2 = createPromise();
     $.http = jest.fn().mockImplementationOnce(() => promise.resolve({
-      ret: {
-        code: 0,
-        message: 'success',
+      ret: Ret.suc({
         data: {
           image: [
             {
@@ -207,13 +179,9 @@ describe('upload', () => {
             },
           ],
         },
-      },
+      }),
     })).mockImplementation(() => promise2.resolve({
-      ret: {
-        code: 0,
-        message: 'success',
-        data: {},
-      },
+      ret: Ret.suc(),
     }));
 
     const {container, getAllByTitle} = render(<MemoryRouter>
@@ -239,13 +207,11 @@ describe('upload', () => {
   test('max', async () => {
     const promise = createPromise();
     $.http = jest.fn().mockImplementationOnce(() => promise.resolve({
-      ret: {
-        code: 0,
-        message: 'success',
+      ret: Ret.suc({
         data: {
           image: '1.jpg',
         },
-      },
+      }),
     }));
 
     const {container, getByTitle} = render(<MemoryRouter>
@@ -271,22 +237,16 @@ describe('upload', () => {
     const promise = createPromise();
     const promise2 = createPromise();
     $.http = jest.fn().mockImplementationOnce(() => promise.resolve({
-      ret: {
-        code: 0,
-        message: 'success',
+      ret: Ret.suc({
         data: {
           image: [
             '1.jpg',
             '2.jpg',
           ],
         },
-      },
+      }),
     })).mockImplementation(() => promise2.resolve({
-      ret: {
-        code: 0,
-        message: 'success',
-        data: {},
-      },
+      ret: Ret.suc(),
     }));
 
     const {container} = render(<MemoryRouter>
@@ -310,9 +270,7 @@ describe('upload', () => {
     const promise = createPromise();
     const promise2 = createPromise();
     $.http = jest.fn().mockImplementationOnce(() => promise.resolve({
-      ret: {
-        code: 0,
-        message: 'success',
+      ret: Ret.suc({
         data: {
           image: [
             {
@@ -325,13 +283,9 @@ describe('upload', () => {
             },
           ],
         },
-      },
+      }),
     })).mockImplementation(() => promise2.resolve({
-      ret: {
-        code: 0,
-        message: 'success',
-        data: {},
-      },
+      ret: Ret.suc(),
     }));
 
     const {container} = render(<MemoryRouter>
@@ -354,11 +308,7 @@ describe('upload', () => {
   test('emptyToUndefined', async () => {
     const promise = createPromise();
     $.http = jest.fn().mockImplementation(() => promise.resolve({
-      ret: {
-        code: 0,
-        message: 'success',
-        data: {},
-      },
+      ret: Ret.suc(),
     }));
 
     const {container} = render(<MemoryRouter>
