@@ -54,7 +54,7 @@ export default class PicturesWall extends Component {
 
   state = {
     fileList: [],
-    previewVisible: false,
+    previewOpen: false,
     previewImage: '',
     previewTitle: '',
     headers: {},
@@ -138,7 +138,7 @@ export default class PicturesWall extends Component {
     return value;
   };
 
-  handleCancel = () => this.setState({previewVisible: false});
+  handleCancel = () => this.setState({previewOpen: false});
 
   handlePreview = async file => {
     if (!file.url && !file.preview) {
@@ -147,7 +147,7 @@ export default class PicturesWall extends Component {
 
     this.setState({
       previewImage: file.url || file.preview,
-      previewVisible: true,
+      previewOpen: true,
       previewTitle: file.name || file.url.substring(file.url.lastIndexOf('/') + 1),
     });
   };
@@ -226,7 +226,7 @@ export default class PicturesWall extends Component {
           </div>}
         </Upload>
         <Modal
-          visible={this.state.previewVisible}
+          open={this.state.previewOpen}
           title={this.state.previewTitle}
           footer={null}
           onCancel={this.handleCancel}
