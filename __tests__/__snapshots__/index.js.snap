@@ -5,6 +5,7 @@ exports[`upload dataType：array 1`] = `
   "calls": Array [
     Array [
       Object {
+        "loading": true,
         "method": "get",
         "url": "",
       },
@@ -47,6 +48,7 @@ exports[`upload dataType：object 1`] = `
   "calls": Array [
     Array [
       Object {
+        "loading": true,
         "method": "get",
         "url": "",
       },
@@ -121,6 +123,7 @@ exports[`upload max 1`] = `
   "calls": Array [
     Array [
       Object {
+        "loading": true,
         "method": "get",
         "url": "",
       },
@@ -143,6 +146,7 @@ exports[`upload multiple: load and submit 1`] = `
   "calls": Array [
     Array [
       Object {
+        "loading": true,
         "method": "get",
         "url": "",
       },
@@ -191,6 +195,7 @@ exports[`upload multiple: load, remove and submit 1`] = `
   "calls": Array [
     Array [
       Object {
+        "loading": true,
         "method": "get",
         "url": "",
       },
@@ -261,6 +266,7 @@ exports[`upload one: load and submit 1`] = `
   "calls": Array [
     Array [
       Object {
+        "loading": true,
         "method": "get",
         "url": "",
       },
@@ -300,6 +306,7 @@ exports[`upload one: load, delete and submit 1`] = `
   "calls": Array [
     Array [
       Object {
+        "loading": true,
         "method": "get",
         "url": "",
       },
