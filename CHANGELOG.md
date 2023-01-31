@@ -1,3 +1,18 @@
+## [0.6.14](https://github.com/miaoxing/mxjs-upload/compare/v0.6.13...v0.6.14) (2023-01-31)
+
+
+### Features
+
+* 更新 `antd` 到 `~4.24.7` ([2131593](https://github.com/miaoxing/mxjs-upload/commit/2131593c20647233f7dbee183fb08727c6c03414))
+
+
+
+
+
+### Dependencies
+
+* **@mxjs/a-form:** upgrade from `1.1.5` to `1.2.0`
+
 ## [0.6.13](https://github.com/miaoxing/mxjs-upload/compare/v0.6.12...v0.6.13) (2023-01-01)
 
 
