@@ -1,3 +1,21 @@
+## [0.6.18](https://github.com/miaoxing/mxjs-upload/compare/v0.6.17...v0.6.18) (2023-05-31)
+
+
+### Features
+
+* **antd5:** 更新 `antd` 到 `5.1.6` ([ed09249](https://github.com/miaoxing/mxjs-upload/commit/ed092494422796c54e978e52e523a172cd628f85))
+
+
+
+
+
+### Dependencies
+
+* **babel-preset-miaoxing:** upgrade from `0.6.1` to `0.7.0`
+* **@miaoxing/dev:** upgrade from `8.2.0` to `8.2.1`
+* **@mxjs/test:** upgrade from `1.0.3` to `1.0.4`
+* **@mxjs/a-form:** upgrade from `1.3.0` to `1.4.0`
+
 ## [0.6.17](https://github.com/miaoxing/mxjs-upload/compare/v0.6.16...v0.6.17) (2023-04-30)
 
 
