@@ -1,3 +1,18 @@
+## [0.6.27](https://github.com/miaoxing/mxjs-upload/compare/v0.6.26...v0.6.27) (2024-01-31)
+
+
+### Features
+
+* 更新 `react` 支持 18 ([4f4ea5a](https://github.com/miaoxing/mxjs-upload/commit/4f4ea5a672e75a9748ae1d21e3493938ab3dd857))
+
+
+
+
+
+### Dependencies
+
+* **@mxjs/a-form:** upgrade from `2.0.3` to `2.1.0`
+
 ## [0.6.26](https://github.com/miaoxing/mxjs-upload/compare/v0.6.25...v0.6.26) (2024-01-08)
 
 
