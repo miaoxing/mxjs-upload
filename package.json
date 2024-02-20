@@ -1,6 +1,6 @@
 {
   "name": "@mxjs/upload",
-  "version": "0.6.27",
+  "version": "0.6.28",
   "main": "index.js",
   "author": "twinh",
   "license": "MIT",
@@ -24,7 +24,7 @@
     "core-js": "^3.6.5",
     "@miaoxing/dev": "^9.1.0",
     "@mxjs/test": "^1.0.10",
-    "@mxjs/a-form": "^2.1.0",
+    "@mxjs/a-form": "^2.2.0",
     "react": ">=16.13.1",
     "react-dom": ">=16.13.1"
   },
